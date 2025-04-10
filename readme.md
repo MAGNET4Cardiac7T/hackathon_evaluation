@@ -19,9 +19,9 @@ To run the evaluation clone this repository, make the `evaluation.sh` executable
 
 After which you can run the evaluation by calling:
 
-> ./evaluation.sh `URL_OF_YOUR_GITHUB_REPO`
+> ./evaluation.sh `URL_OF_YOUR_GITHUB_REPO` `NAME_OF_YOUR_GROUP`
 
-e.g. `./evaluation.sh https://github.com/MAGNET4Cardiac7T/hackathon`
+e.g. `./evaluation.sh https://github.com/MAGNET4Cardiac7T/hackathon the_magnet_crushers`
 
 Remember to set your repository to public before the submission.
 

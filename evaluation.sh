@@ -1,12 +1,22 @@
 #!/bin/sh
 
-# Check if a URL is provided
+# Check if both repository URL and group name are provided
 if [ -z "$1" ]; then
-    echo "Usage: $0 <repository_url>"
+    echo "Usage: $0 <repository_url> <group_name>"
     exit 1
 fi
-
 REPO_URL=$1
+
+# Check if a group name is provided
+if [ -z "$2" ]; then
+    # set default group name
+    GROUP_NAME="default_group"
+    echo "Usage: $0 <repository_url> <group_name>"
+    echo "No group name provided. Using default group name: $GROUP_NAME"
+else
+    GROUP_NAME=$2
+    echo "Using provided group name: $GROUP_NAME"
+fi
 
 # Remove the /code directory if it exists and recreate it
 rm -rf code
@@ -80,13 +90,13 @@ while IFS= read -r simulation_file; do
         for cost_function in $COST_FUNCTIONS; do
             echo "Processing simulation file: $simulation_file with cost function: $cost_function"
             timeout -v -k 10 300 python run_optimization.py -f "$simulation_file" -c "$cost_function"
-            python evaluate.py -f "$simulation_file" -c "$cost_function"
-            if [ -f "best_coil_config.json" ]; then
-                rm best_coil_config.json
-            fi
+            python evaluate.py -f "$simulation_file" -c "$cost_function" -g "$GROUP_NAME"
             if [ $? -ne 0 ]; then
                 echo "Failed to process simulation file: $simulation_file with cost function: $cost_function"
                 exit 1
+            fi
+            if [ -f "best_coil_config.json" ]; then
+                rm best_coil_config.json
             fi
         done
     fi
