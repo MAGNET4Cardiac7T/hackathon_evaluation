@@ -1,7 +1,3 @@
-from eval_src.costs import B1HomogeneityCost as B1HomogeneityCostEval
-from eval_src.costs import B1HomogeneitySARCost as B1HomogeneitySARCostEval
-from eval_src.utils import evaluate_coil_config as evaluate_coil_config_eval
-
 import argparse
 import json
 import pathlib
@@ -11,6 +7,22 @@ sys.path.insert(0, './code')
 
 from main import run
 from src.data import Simulation
+
+try:
+    from src.costs import B1HomogeneityCost as B1HomogeneityCostEval
+except ImportError:
+    Warning ("Failed to import B1HomogeneityCost from src.costs. Using eval_src instead.")
+    from eval_src.costs import B1HomogeneityCost as B1HomogeneityCostEval
+try:
+    from src.costs import B1HomogeneitySARCost as B1HomogeneitySARCostEval
+except ImportError:
+    Warning ("Failed to import B1HomogeneitySARCost from src.costs. Using eval_src instead.")
+    from eval_src.costs import B1HomogeneitySARCost as B1HomogeneitySARCostEval
+try: 
+    from src.utils import evaluate_coil_config as evaluate_coil_config_eval
+except ImportError:
+    Warning ("Failed to import evaluate_coil_config from src.utils. Using eval_src instead.")
+    from eval_src.utils import evaluate_coil_config as evaluate_coil_config_eval
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Run coil configuration evaluation.")

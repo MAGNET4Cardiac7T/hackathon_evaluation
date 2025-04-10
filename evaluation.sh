@@ -83,22 +83,21 @@ fi
 
 # Read cost functions from cost_list.txt
 COST_FUNCTIONS=$(cat cost_list.txt)
+SIMULATIONS=$(cat data_list.txt)
 
 # Read each line from data_list.txt and iterate over cost functions
-while IFS= read -r simulation_file; do
-    if [ -n "$simulation_file" ]; then
-        for cost_function in $COST_FUNCTIONS; do
-            echo "Processing simulation file: $simulation_file with cost function: $cost_function"
-            timeout -v -k 10 300 python run_optimization.py -f "$simulation_file" -c "$cost_function"
-            python evaluate.py -f "$simulation_file" -c "$cost_function" -g "$GROUP_NAME"
-            if [ $? -ne 0 ]; then
-                echo "Failed to process simulation file: $simulation_file with cost function: $cost_function"
-                exit 1
-            fi
-            if [ -f "best_coil_config.json" ]; then
-                rm best_coil_config.json
-            fi
-        done
-    fi
-done < "data_list.txt"
+for simulation_file in $SIMULATIONS; do
+    for cost_function in $COST_FUNCTIONS; do
+        echo "Processing simulation file: $simulation_file with cost function: $cost_function"
+        timeout -v -k 10 300 python run_optimization.py -f "$simulation_file" -c "$cost_function"
+        python evaluate.py -f "$simulation_file" -c "$cost_function" -g "$GROUP_NAME"
+        if [ $? -ne 0 ]; then
+            echo "Failed to process simulation file: $simulation_file with cost function: $cost_function"
+            exit 1
+        fi
+        if [ -f "best_coil_config.json" ]; then
+            rm best_coil_config.json
+        fi
+    done
+done
 
