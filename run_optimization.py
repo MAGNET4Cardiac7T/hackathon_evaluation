@@ -38,8 +38,6 @@ if __name__ == "__main__":
         cost_function = B1HomogeneityCostEval()
     elif args.cost_function == "B1HomogeneitySARCost":
         cost_function = B1HomogeneitySARCostEval()
-    elif args.cost_function == "B1Homogeneity2Cost":
-        cost_function = B1Homogeneity2CostEval()
     else:
         raise ValueError(f"Unsupported cost function: {args.cost_function}")
     
