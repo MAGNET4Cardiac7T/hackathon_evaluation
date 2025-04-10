@@ -1,0 +1,6 @@
+/code
+/test_data
+
+# python binaries
+__pycache__/
+*.py[cod]

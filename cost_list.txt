@@ -1,0 +1,2 @@
+B1HomogeneityCost
+B1HomogeneitySARCost
