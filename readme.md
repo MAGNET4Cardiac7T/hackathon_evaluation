@@ -26,7 +26,7 @@ e.g. `./evaluation.sh https://github.com/MAGNET4Cardiac7T/hackathon the_magnet_c
 Remember to set your repository to public before the submission.
 
 ### What happens? 
-The script will clone your repository, create a new virtual environment with the packages specified in your `requirements.txt` file in your repository and then run your optimization algorithm for each of the cost functions specified in `cost_list.txt` and all simulations listed in `data_list.txt` (which at evaluation time will contain unseen simulations).
+The script will clone your repository, create a new virtual environment with the packages specified in your `requirements.txt` file in your repository and then run your optimization algorithm for each of the cost functions specified in `cost_list.txt` and all simulations listed in `data_list.txt` (which at evaluation time will contain 5 unseen simulations).
 
 The script calls the `run` method from the `main.py` script in your repository and expects a return value of type `CoilConfig`. 
 
