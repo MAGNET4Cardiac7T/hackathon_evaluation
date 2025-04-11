@@ -1,0 +1,29 @@
+{
+    "best_coil_phase": [
+        4.389018535614014,
+        5.286404132843018,
+        6.114638328552246,
+        0.49902063608169556,
+        0.9980130791664124,
+        2.114967107772827,
+        2.709641933441162,
+        3.6317949295043945
+    ],
+    "best_coil_amplitude": [
+        0.8778507709503174,
+        0.6946553587913513,
+        0.8666059374809265,
+        0.9982317090034485,
+        0.9002653956413269,
+        0.652875542640686,
+        1.0,
+        1.0
+    ],
+    "best_coil_config_cost": 7.168301162820083,
+    "default_coil_config_cost": 1.553136731020937,
+    "cost_improvement_absolute": 5.615164431799146,
+    "cost_improvement_relative": 3.6153703145685574,
+    "cost_function_name": "B1HomogeneitySARCost",
+    "cost_function_direction": "maximize",
+    "simulation_data": "children_2_tubes_4_id_14588"
+}

@@ -54,7 +54,7 @@ if [ -f "requirements.txt" ]; then
     . venv/bin/activate
 
     # Install dependencies
-    pip install -r requirements.txt
+    pip install -q -r requirements.txt
     if [ $? -ne 0 ]; then
         echo "Failed to install dependencies."
         deactivate
@@ -89,7 +89,7 @@ SIMULATIONS=$(cat data_list.txt)
 for simulation_file in $SIMULATIONS; do
     for cost_function in $COST_FUNCTIONS; do
         echo "Processing simulation file: $simulation_file with cost function: $cost_function"
-        timeout -v -k 10 300 python run_optimization.py -f "$simulation_file" -c "$cost_function"
+        timeout -v -k 10 360 python run_optimization.py -f "$simulation_file" -c "$cost_function"
         python evaluate.py -f "$simulation_file" -c "$cost_function" -g "$GROUP_NAME"
         if [ $? -ne 0 ]; then
             echo "Failed to process simulation file: $simulation_file with cost function: $cost_function"
